@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'OKBluetooth_Example' do
+  pod 'OKBluetooth', :path => '../'
+
+  target 'OKBluetooth_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+    pod 'Expecta'
+  end
+end
