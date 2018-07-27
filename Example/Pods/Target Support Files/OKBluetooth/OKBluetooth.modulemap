@@ -1,0 +1,6 @@
+framework module OKBluetooth {
+  umbrella header "OKBluetooth-umbrella.h"
+
+  export *
+  module * { export * }
+}

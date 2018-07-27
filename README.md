@@ -22,7 +22,7 @@ pod 'OKBluetooth'
 
 ## Author
 
-deadvia, deadvia@gmail.com
+yuhanle, deadvia@gmail.com
 
 ## License
 

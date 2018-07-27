@@ -1,0 +1,1 @@
+../../../../../OKBluetooth/Classes/OKCharacteristic.h

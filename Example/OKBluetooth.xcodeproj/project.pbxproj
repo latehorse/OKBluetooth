@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5BC166C19EDB5B02002F4549 /* Pods_OKBluetooth_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB016ABDA4D04886298ED523 /* Pods_OKBluetooth_Example.framework */; };
+		20E9340584B84C96E3D2FC98 /* libPods-OKBluetooth_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38C879A4B9BAE622D140B75 /* libPods-OKBluetooth_Tests.a */; };
+		2BF75013C719C547218AA978 /* libPods-OKBluetooth_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C65B3E83A2900DDB2BE044C /* libPods-OKBluetooth_Example.a */; };
+		41F85F13210B2220002DE259 /* OKListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F85F12210B2220002DE259 /* OKListViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -23,7 +25,6 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		DF7D46880D80A055365B3E28 /* Pods_OKBluetooth_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C03974F14F9A97454BADD2C /* Pods_OKBluetooth_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,10 @@
 
 /* Begin PBXFileReference section */
 		1B26FEF3BC1D8695FA5E6EC3 /* Pods-OKBluetooth_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKBluetooth_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OKBluetooth_Tests/Pods-OKBluetooth_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		1C65B3E83A2900DDB2BE044C /* libPods-OKBluetooth_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OKBluetooth_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A1D9CE48D6391BB4834CC /* Pods-OKBluetooth_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKBluetooth_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-OKBluetooth_Example/Pods-OKBluetooth_Example.release.xcconfig"; sourceTree = "<group>"; };
+		41F85F11210B2220002DE259 /* OKListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKListViewController.h; sourceTree = "<group>"; };
+		41F85F12210B2220002DE259 /* OKListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKListViewController.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* OKBluetooth_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OKBluetooth_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -59,13 +63,12 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7C03974F14F9A97454BADD2C /* Pods_OKBluetooth_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OKBluetooth_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9DC3C0C3BB1D0B42BFBBB96B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		A1585B52F74D3648C408B0FD /* OKBluetooth.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = OKBluetooth.podspec; path = ../OKBluetooth.podspec; sourceTree = "<group>"; };
+		9DC3C0C3BB1D0B42BFBBB96B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		A1585B52F74D3648C408B0FD /* OKBluetooth.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = OKBluetooth.podspec; path = ../OKBluetooth.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B38C879A4B9BAE622D140B75 /* libPods-OKBluetooth_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OKBluetooth_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B99FCCBC6489B0D7E582E02A /* Pods-OKBluetooth_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKBluetooth_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OKBluetooth_Example/Pods-OKBluetooth_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		D85183C2BF4757FC50FF294C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		EB016ABDA4D04886298ED523 /* Pods_OKBluetooth_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OKBluetooth_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D85183C2BF4757FC50FF294C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		EDD65610381486BEEAA53A58 /* Pods-OKBluetooth_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKBluetooth_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OKBluetooth_Tests/Pods-OKBluetooth_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +80,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				5BC166C19EDB5B02002F4549 /* Pods_OKBluetooth_Example.framework in Frameworks */,
+				2BF75013C719C547218AA978 /* libPods-OKBluetooth_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +91,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				DF7D46880D80A055365B3E28 /* Pods_OKBluetooth_Tests.framework in Frameworks */,
+				20E9340584B84C96E3D2FC98 /* libPods-OKBluetooth_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,8 +126,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				EB016ABDA4D04886298ED523 /* Pods_OKBluetooth_Example.framework */,
-				7C03974F14F9A97454BADD2C /* Pods_OKBluetooth_Tests.framework */,
+				1C65B3E83A2900DDB2BE044C /* libPods-OKBluetooth_Example.a */,
+				B38C879A4B9BAE622D140B75 /* libPods-OKBluetooth_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -137,6 +140,8 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* OKViewController.h */,
 				6003F5A6195388D20070C39A /* OKViewController.m */,
+				41F85F11210B2220002DE259 /* OKListViewController.h */,
+				41F85F12210B2220002DE259 /* OKListViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -207,7 +212,6 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				1FCE2A7BDB7CC6043773BA9B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -226,7 +230,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				74134DD4C3B846B7CAEFE802 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -248,6 +251,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = deadvia;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 3YBE5P32EP;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -313,44 +319,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1FCE2A7BDB7CC6043773BA9B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-OKBluetooth_Example/Pods-OKBluetooth_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/OKBluetooth/OKBluetooth.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OKBluetooth.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OKBluetooth_Example/Pods-OKBluetooth_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		74134DD4C3B846B7CAEFE802 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-OKBluetooth_Tests/Pods-OKBluetooth_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Expecta/Expecta.framework",
-				"${BUILT_PRODUCTS_DIR}/Specta/Specta.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Expecta.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Specta.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OKBluetooth_Tests/Pods-OKBluetooth_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A4C0D38FE18A13739DA09554 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -378,6 +346,7 @@
 			files = (
 				6003F59E195388D20070C39A /* OKAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* OKViewController.m in Sources */,
+				41F85F13210B2220002DE259 /* OKListViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,12 +475,15 @@
 			baseConfigurationReference = B99FCCBC6489B0D7E582E02A /* Pods-OKBluetooth_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3YBE5P32EP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OKBluetooth/OKBluetooth-Prefix.pch";
 				INFOPLIST_FILE = "OKBluetooth/OKBluetooth-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -521,12 +493,15 @@
 			baseConfigurationReference = 273A1D9CE48D6391BB4834CC /* Pods-OKBluetooth_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3YBE5P32EP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OKBluetooth/OKBluetooth-Prefix.pch";
 				INFOPLIST_FILE = "OKBluetooth/OKBluetooth-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
