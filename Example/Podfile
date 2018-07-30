@@ -3,6 +3,7 @@ inhibit_all_warnings!
 
 target 'OKBluetooth_Example' do
   pod 'OKBluetooth', :path => '../'
+  pod 'SVProgressHUD', '2.2.5'
 
   target 'OKBluetooth_Tests' do
     inherit! :search_paths

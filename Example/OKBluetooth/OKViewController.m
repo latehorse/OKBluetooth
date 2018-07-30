@@ -32,12 +32,14 @@
         } else {
             [self.okActivityView stopAnimating];
         }
-        
-        NSLog(@"%@", [[OKCentralManager sharedInstance] peripherals]);
     }];
     
     [[[OKCentralManager sharedInstance].centralManagerStateConnection.signal distinctUntilChanged] subscribeNext:^(id  _Nullable x) {
         NSLog(@"\n%@    %@", x, [[OKCentralManager sharedInstance] centralNotReadyReason]);
+    }];
+    
+    [[OKCentralManager sharedInstance].connectPeripheralConnection.signal subscribeNext:^(id  _Nullable x) {
+        NSLog(@"Connection info: %@", x);
     }];
 }
 

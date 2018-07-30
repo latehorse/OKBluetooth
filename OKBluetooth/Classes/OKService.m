@@ -15,6 +15,7 @@
 #endif
 #import "OKCharacteristic.h"
 #import "OKPeripheral.h"
+#import "OKUtils.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 
 @interface OKService ()
@@ -36,6 +37,13 @@
 - (NSString *)UUIDString
 {
     return [self.cbService.UUID representativeString];
+}
+
+- (NSString *)description
+{
+    NSString *org = [super description];
+    
+    return [org stringByAppendingFormat:@" UUIDString: %@", self.UUIDString];
 }
 
 /*----------------------------------------------------*/
@@ -62,6 +70,10 @@
     _discoverCharacteristicsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(NSArray *input) {
         @strongify(self);
         return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            if (self.cbService.peripheral.state != CBPeripheralStateConnected) {
+                [subscriber sendError:[OKUtils discoverErrorWithCode:kOKUtilsMissingServiceErrorCode message:kOKUtilsMissingServiceErrorMessage]];
+                return nil;
+            }
             _discoverCharacteristicsSubscriber = subscriber;
             [self.cbService.peripheral discoverCharacteristics:input forService:self.cbService];
             return [RACDisposable disposableWithBlock:^{
@@ -103,7 +115,7 @@
     if (aError) {
         [self.discoverCharacteristicsSubscriber sendError:aError];
     }else {
-        [self.discoverCharacteristicsSubscriber sendNext:aCharacteristics];
+        [self.discoverCharacteristicsSubscriber sendNext:self];
         [self.discoverCharacteristicsSubscriber sendCompleted];
     }
 }

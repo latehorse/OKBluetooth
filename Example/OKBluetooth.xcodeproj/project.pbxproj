@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		20E9340584B84C96E3D2FC98 /* libPods-OKBluetooth_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B38C879A4B9BAE622D140B75 /* libPods-OKBluetooth_Tests.a */; };
 		2BF75013C719C547218AA978 /* libPods-OKBluetooth_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C65B3E83A2900DDB2BE044C /* libPods-OKBluetooth_Example.a */; };
+		416AA25D210EB5B7005AC605 /* OKPeripheralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 416AA25C210EB5B7005AC605 /* OKPeripheralCell.m */; };
+		416AA260210EBB5C005AC605 /* OKPeripheralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 416AA25F210EBB5C005AC605 /* OKPeripheralViewController.m */; };
+		416AA263210EFC50005AC605 /* OKCharactersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 416AA262210EFC50005AC605 /* OKCharactersViewController.m */; };
 		41F85F13210B2220002DE259 /* OKListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F85F12210B2220002DE259 /* OKListViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -41,6 +44,12 @@
 		1B26FEF3BC1D8695FA5E6EC3 /* Pods-OKBluetooth_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKBluetooth_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OKBluetooth_Tests/Pods-OKBluetooth_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1C65B3E83A2900DDB2BE044C /* libPods-OKBluetooth_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OKBluetooth_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		273A1D9CE48D6391BB4834CC /* Pods-OKBluetooth_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OKBluetooth_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-OKBluetooth_Example/Pods-OKBluetooth_Example.release.xcconfig"; sourceTree = "<group>"; };
+		416AA25B210EB5B7005AC605 /* OKPeripheralCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKPeripheralCell.h; sourceTree = "<group>"; };
+		416AA25C210EB5B7005AC605 /* OKPeripheralCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKPeripheralCell.m; sourceTree = "<group>"; };
+		416AA25E210EBB5C005AC605 /* OKPeripheralViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKPeripheralViewController.h; sourceTree = "<group>"; };
+		416AA25F210EBB5C005AC605 /* OKPeripheralViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKPeripheralViewController.m; sourceTree = "<group>"; };
+		416AA261210EFC50005AC605 /* OKCharactersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKCharactersViewController.h; sourceTree = "<group>"; };
+		416AA262210EFC50005AC605 /* OKCharactersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKCharactersViewController.m; sourceTree = "<group>"; };
 		41F85F11210B2220002DE259 /* OKListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKListViewController.h; sourceTree = "<group>"; };
 		41F85F12210B2220002DE259 /* OKListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKListViewController.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* OKBluetooth_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OKBluetooth_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,11 +146,17 @@
 			children = (
 				6003F59C195388D20070C39A /* OKAppDelegate.h */,
 				6003F59D195388D20070C39A /* OKAppDelegate.m */,
-				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* OKViewController.h */,
 				6003F5A6195388D20070C39A /* OKViewController.m */,
 				41F85F11210B2220002DE259 /* OKListViewController.h */,
 				41F85F12210B2220002DE259 /* OKListViewController.m */,
+				416AA25E210EBB5C005AC605 /* OKPeripheralViewController.h */,
+				416AA25F210EBB5C005AC605 /* OKPeripheralViewController.m */,
+				416AA261210EFC50005AC605 /* OKCharactersViewController.h */,
+				416AA262210EFC50005AC605 /* OKCharactersViewController.m */,
+				416AA25B210EB5B7005AC605 /* OKPeripheralCell.h */,
+				416AA25C210EB5B7005AC605 /* OKPeripheralCell.m */,
+				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -212,6 +227,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
+				010FDEE87BFE3EE4BF9D43E2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,6 +269,11 @@
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = 3YBE5P32EP;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -301,6 +322,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		010FDEE87BFE3EE4BF9D43E2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OKBluetooth_Example/Pods-OKBluetooth_Example-resources.sh",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OKBluetooth_Example/Pods-OKBluetooth_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		04803207D869908C02DB028F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,7 +385,10 @@
 			files = (
 				6003F59E195388D20070C39A /* OKAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* OKViewController.m in Sources */,
+				416AA260210EBB5C005AC605 /* OKPeripheralViewController.m in Sources */,
+				416AA25D210EB5B7005AC605 /* OKPeripheralCell.m in Sources */,
 				41F85F13210B2220002DE259 /* OKListViewController.m in Sources */,
+				416AA263210EFC50005AC605 /* OKCharactersViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

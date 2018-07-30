@@ -93,6 +93,13 @@
     return [self.cbCharacteristic.UUID representativeString];
 }
 
+- (NSString *)description
+{
+    NSString *org = [super description];
+    
+    return [org stringByAppendingFormat:@" UUIDString: %@", self.UUIDString];
+}
+
 /*----------------------------------------------------*/
 #pragma mark - Private Methods -
 /*----------------------------------------------------*/
@@ -142,16 +149,16 @@
     OKLog(@"Characteristic - %@ wrote with error - %@", self.cbCharacteristic.UUID, anError);
     
     if (anError) {
-        [self.writeValueSubscriber sendError:anError];
+        [self.writeDataSubscriber sendError:anError];
     }else {
         if ([self.writeData hasMore]) {
-            [self.writeValueSubscriber sendNext:self.writeData];
+            [self.writeDataSubscriber sendNext:self.writeData];
             
             // Continue send
             [self loopWirteValue];
         }else {
-            [self.writeValueSubscriber sendNext:self.writeData];
-            [self.writeValueSubscriber sendCompleted];
+            [self.writeDataSubscriber sendNext:self.writeData];
+            [self.writeDataSubscriber sendCompleted];
         }
     }
 }
@@ -163,6 +170,10 @@
     _notifyValueCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(NSNumber *input) {
         @strongify(self);
         return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            if (self.cbCharacteristic.service.peripheral.state != CBPeripheralStateConnected) {
+                [subscriber sendError:[OKUtils readErrorWithCode:kOKUtilsMissingCharacteristicErrorCode message:kOKUtilsMissingCharacteristicErrorMessage]];
+                return nil;
+            }
             _notifyValueSubscriber = subscriber;
             [self.cbCharacteristic.service.peripheral setNotifyValue:input.boolValue forCharacteristic:self.cbCharacteristic];
             return [RACDisposable disposableWithBlock:^{
@@ -184,6 +195,10 @@
         
         if (input.type == CBCharacteristicWriteWithoutResponse) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+                if (self.cbCharacteristic.service.peripheral.state != CBPeripheralStateConnected) {
+                    [subscriber sendError:[OKUtils writeErrorWithCode:kOKUtilsMissingCharacteristicErrorCode message:kOKUtilsMissingCharacteristicErrorMessage]];
+                    return nil;
+                }
                 [self.cbCharacteristic.service.peripheral writeValue:input.subData forCharacteristic:self.cbCharacteristic type:input.type];
                 [subscriber sendCompleted];
                 return [RACDisposable disposableWithBlock:^{
@@ -228,6 +243,10 @@
     _readValueCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
         @strongify(self);
         return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            if (self.cbCharacteristic.service.peripheral.state != CBPeripheralStateConnected) {
+                [subscriber sendError:[OKUtils readErrorWithCode:kOKUtilsMissingCharacteristicErrorCode message:kOKUtilsMissingCharacteristicErrorMessage]];
+                return nil;
+            }
             _readValueSubscriber = subscriber;
             [self.cbCharacteristic.service.peripheral readValueForCharacteristic:self.cbCharacteristic];
             return [RACDisposable disposableWithBlock:^{
@@ -236,10 +255,10 @@
         }];
     }];
     
-    _notiValueSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+    _notifyValueSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         _notifySubscriber = subscriber;
         return [RACDisposable disposableWithBlock:^{
-            _notiValueSignal = nil;
+            _notifyValueSignal = nil;
         }];
     }];
 }

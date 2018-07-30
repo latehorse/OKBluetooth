@@ -7,12 +7,25 @@
 //
 
 #import "OKAppDelegate.h"
+#import <OKBluetooth/OKBluetooth.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @implementation OKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    NSArray *centralManagerIdentifiers = launchOptions[UIApplicationLaunchOptionsBluetoothCentralsKey];
+    if (centralManagerIdentifiers) {
+        [[OKCentralManager sharedInstance] retrievePeripheralsWithIdentifiers:centralManagerIdentifiers];
+    }
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD setMinimumSize:CGSizeMake(100, 100)];
+    [SVProgressHUD setHapticsEnabled:YES];
+    [SVProgressHUD setMinimumDismissTimeInterval:2.0];
+    
     return YES;
 }
 

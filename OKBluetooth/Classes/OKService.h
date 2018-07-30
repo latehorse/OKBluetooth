@@ -23,11 +23,6 @@
 @property (strong, nonatomic, readonly) CBService *cbService;
 
 /**
- * Core Bluetooth's CBPeripheral isntance, which this instance belongs
- */
-@property (unsafe_unretained, nonatomic, readonly) CBPeripheral *cbPeripheral;
-
-/**
  * NSString representation of 16/128 bit CBUUID
  */
 @property (weak, nonatomic, readonly) NSString *UUIDString;

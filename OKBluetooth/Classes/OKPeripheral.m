@@ -30,8 +30,6 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
 
 @interface OKPeripheral () <CBPeripheralDelegate>
 
-@property (readonly, nonatomic, getter = isConnected) BOOL connected;
-
 /**
  * Peripheral's connect subscriber
  */
@@ -82,9 +80,9 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
 - (void)handleConnectionWithError:(NSError *)anError
 {
     _error = anError;
+    OKLog(@"Connection with error - %@", anError);
     
     if (anError) {
-        OKLog(@"Connection with error - %@", anError);
         [self.connectServiceSubscriber sendError:anError];
     }else {
         [self.connectServiceSubscriber sendNext:self];
@@ -95,9 +93,9 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
 - (void)handleDisconnectWithError:(NSError *)anError
 {
     _error = anError;
+    OKLog(@"Disconnect with error - %@", anError);
     
     if (anError) {
-        OKLog(@"Disconnect with error - %@", anError);
         [self.disConnectServiceSubscriber sendError:anError];
     }else {
         [self.disConnectServiceSubscriber sendNext:self];
@@ -174,7 +172,7 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
         // Subscribe command errors, then we can know the timeout
         [[timeoutSubject timeout:input.integerValue onScheduler:[RACScheduler mainThreadScheduler]] subscribeError:^(NSError * _Nullable error) {
             if (error.code == 1) {
-                [self.connectServiceSubscriber sendError:[OKUtils scanErrorWithCode:kConnectionTimeoutErrorCode message:kConnectionTimeoutErrorMessage]];
+                [self.connectServiceSubscriber sendError:[self connectionErrorWithCode:kConnectionTimeoutErrorCode message:kConnectionTimeoutErrorMessage]];
             }
         }];
         
@@ -195,6 +193,11 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
     _discoverServicesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(NSArray *input) {
         @strongify(self);
         return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+            if (!self.isConnected) {
+                [subscriber sendError:[self connectionErrorWithCode:kConnectionMissingErrorCode message:kConnectionMissingErrorMessage]];
+                return nil;
+            }
+            
             _discoverServicesSubscriber = subscriber;
             [self.cbPeripheral discoverServices:input];
             return [RACDisposable disposableWithBlock:^{
@@ -236,7 +239,7 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
     if (error) {
         [self.discoverServicesSubscriber sendError:error];
     }else {
-        [self.discoverServicesSubscriber sendNext:peripheral];
+        [self.discoverServicesSubscriber sendNext:self];
         [self.discoverServicesSubscriber sendCompleted];
     }
 }

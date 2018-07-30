@@ -4,17 +4,20 @@ PODS:
     - ReactiveObjC (= 3.1.0)
   - ReactiveObjC (3.1.0)
   - Specta (1.0.7)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Expecta
   - OKBluetooth (from `../`)
   - Specta
+  - SVProgressHUD (= 2.2.5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Expecta
     - ReactiveObjC
     - Specta
+    - SVProgressHUD
 
 EXTERNAL SOURCES:
   OKBluetooth:
@@ -25,7 +28,8 @@ SPEC CHECKSUMS:
   OKBluetooth: a1aba032e6ac46d88fedbeda5db8a95a5d7257e3
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 7d49000175bbd72bc5c49a27d55001fb597cc2a8
+PODFILE CHECKSUM: 741bbd7aa1d066f2f95ac4025738736568790610
 
 COCOAPODS: 1.5.3

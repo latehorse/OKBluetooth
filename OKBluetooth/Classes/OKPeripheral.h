@@ -57,6 +57,11 @@ extern NSString * const kConnectionMissingErrorMessage;
 @property (unsafe_unretained, nonatomic, readonly) OKCentralManager *manager;
 
 /**
+ * Connection state of peripheral
+ */
+@property (readonly, nonatomic, getter = isConnected) BOOL connected;
+
+/**
  * Flag to indicate discovering services or not
  */
 @property (assign, nonatomic, readonly, getter = isDiscoveringServices) BOOL discoveringServices;

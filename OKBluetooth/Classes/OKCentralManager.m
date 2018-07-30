@@ -28,7 +28,7 @@
 
 - (instancetype)initModelWithServiceUUIDs:(NSArray *)serviceUUIDs options:(NSDictionary *)options aScanInterval:(NSTimeInterval)aScanInterval {
     if (self = [super init]) {
-        self.options = options ? options : @{CBCentralManagerScanOptionAllowDuplicatesKey : @YES};
+        self.options = options ? options : @{CBCentralManagerScanOptionAllowDuplicatesKey : @NO};
         self.aScanInterval = aScanInterval ? aScanInterval : 30;
         self.serviceUUIDs = serviceUUIDs;
     }
@@ -118,7 +118,7 @@
     }
     okPeripheral.advertisingData = advertisementData;
     
-    [self.scanServiceSubscriber sendNext:self.scannedPeripherals];
+    [self.scanServiceSubscriber sendNext:self.peripherals];
     if (self.scannedPeripherals.count >= self.peripheralsCountToStop) {
         [self.scanServiceSubscriber sendCompleted];
         [self stopScanForPeripherals];
@@ -144,10 +144,20 @@
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     OKPeripheral *okPeripheral = [self wrapperByPeripheral:peripheral];
-    [okPeripheral handleConnectionWithError:error];
+    [okPeripheral handleDisconnectWithError:error];
     
     [self.connectServiceSubscriber sendNext:peripheral];
-    [self.scannedPeripherals removeObject:okPeripheral];
+    //[self.scannedPeripherals removeObject:okPeripheral];
+}
+
+- (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *,id> *)dict {
+    NSArray *peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey];
+    [[self wrappersByPeripherals:peripherals] enumerateObjectsUsingBlock:^(OKPeripheral *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.manager.manager connectPeripheral:obj.cbPeripheral options:@{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
+                                                                          CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
+                                                                          CBConnectPeripheralOptionNotifyOnNotificationKey:@YES}];
+        [self.connectServiceSubscriber sendNext:obj];
+    }];
 }
 
 /*----------------------------------------------------*/
@@ -190,8 +200,10 @@
             message = @"Bluetooth is currently powered off.";
             break;
         case CBCentralManagerStatePoweredOn:
+            message = @"";
             break;
         default:
+            message = @"";
             break;
     }
     return message;
@@ -228,8 +240,12 @@
 {
     @weakify(self);
     RACSignal *centralManagerStateSingal = [RACObserve(self, cbCentralManagerState) doNext:^(NSNumber *x) {
+        @strongify(self);
         if (x.integerValue != CBCentralManagerStatePoweredOn) {
-            [self.scanServiceSubscriber sendError:[OKUtils scanErrorWithCode:self.cbCentralManagerState message:[self stateMessage]]];
+            if (self.scanServiceSubscriber) {
+                [self.scanServiceSubscriber sendError:[OKUtils scanErrorWithCode:self.cbCentralManagerState message:[self stateMessage]]];
+                self.scanServiceSubscriber = nil;
+            }
         }
     }];
     RACSignal *connectPeripheralSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
@@ -267,12 +283,14 @@
         // Subscribe command errors, then we can know the timeout
         [[timoutSubject timeout:input.aScanInterval onScheduler:[RACScheduler mainThreadScheduler]] subscribeError:^(NSError * _Nullable error) {
             if (error.code == 1) {
-                [self.scanServiceSubscriber sendError:[OKUtils scanErrorWithCode:kOKUtilsScanTimeoutErrorCode message:kOKUtilsScanTimeoutErrorMessage]];
-                self.scanServiceSubscriber = nil;
+                if (self.scanServiceSubscriber) {
+                    [self.scanServiceSubscriber sendError:[OKUtils scanErrorWithCode:kOKUtilsScanTimeoutErrorCode message:kOKUtilsScanTimeoutErrorMessage]];
+                    self.scanServiceSubscriber = nil;
+                }
             }
         }];
         
-        return scanSignal;
+        return [scanSignal throttle:1.5];
     }];
     
     RAC(self, scanning) = [self.scanForPeripheralsCommand executing];
@@ -301,7 +319,7 @@ static OKCentralManager *sharedInstance = nil;
     self = [super init];
     if (self) {
         _centralQueue = dispatch_queue_create("com.OKBluetooth.OKCentralQueue", DISPATCH_QUEUE_SERIAL);
-        _manager      = [[CBCentralManager alloc] initWithDelegate:self queue:self.centralQueue];
+        _manager      = [[CBCentralManager alloc] initWithDelegate:self queue:self.centralQueue options:@{ CBCentralManagerOptionRestoreIdentifierKey: @"com.OKBluetooth.restoreIdentifier" }];
         _cbCentralManagerState = _manager.state;
         _scannedPeripherals = [NSMutableArray new];
         _peripheralsCountToStop = NSUIntegerMax;
