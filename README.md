@@ -8,6 +8,8 @@
 [![Download](https://img.shields.io/cocoapods/dm/OKBluetooth.svg?style=flat)](https://cocoapods.org/pods/OKBluetooth)
 [![Download](https://img.shields.io/cocoapods/dw/OKBluetooth.svg?style=flat)](https://cocoapods.org/pods/OKBluetooth)
 
+> [中文介绍](https://latehorse.github.io/OKBluetooth/#/zh-cn/?id=okbluetooth)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
