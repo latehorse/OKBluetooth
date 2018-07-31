@@ -1,3 +1,4 @@
+git push origin -d gh-pages
 git branch -d gh-pages
 git checkout -b gh-pages
 git add -f Documents
