@@ -4,15 +4,18 @@
 [![Version](https://img.shields.io/cocoapods/v/OKBluetooth.svg?style=flat)](https://cocoapods.org/pods/OKBluetooth)
 [![License](https://img.shields.io/cocoapods/l/OKBluetooth.svg?style=flat)](https://cocoapods.org/pods/OKBluetooth)
 [![Platform](https://img.shields.io/cocoapods/p/OKBluetooth.svg?style=flat)](https://cocoapods.org/pods/OKBluetooth)
-![](https://img.shields.io/cocoapods/dt/OKBluetooth.svg)
-![](https://img.shields.io/cocoapods/dm/OKBluetooth.svg)
-![](https://img.shields.io/cocoapods/dw/OKBluetooth.svg)
+[![Download](https://img.shields.io/cocoapods/dt/OKBluetooth.svg?style=flat)](https://cocoapods.org/pods/OKBluetooth)
+[![Download](https://img.shields.io/cocoapods/dm/OKBluetooth.svg?style=flat)](https://cocoapods.org/pods/OKBluetooth)
+[![Download](https://img.shields.io/cocoapods/dw/OKBluetooth.svg?style=flat)](https://cocoapods.org/pods/OKBluetooth)
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+* XCode 8.0+
+* iOS 8.0+
 
 ## Installation
 
