@@ -1,4 +1,4 @@
-# OKBluetooth-SDK
+# OKBluetooth
 
 !> 在使用本项目前，需熟练使用 `ReactiveObcj` 相关模块
 
