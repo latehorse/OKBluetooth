@@ -1,0 +1,7 @@
+{
+    "apps": [{
+        "name": "okblue-sdk-v1",
+        "script": "http-server",
+        "args": "-p 9100"
+    }]
+}
