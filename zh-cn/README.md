@@ -1,6 +1,6 @@
 # OKBluetooth
 
-!> 在使用本项目前，需熟练使用 `ReactiveObcj` 相关模块
+!> 在使用本项目前，需熟练使用 `ReactiveObjC` 相关模块
 
 SDK 主要提供功能如下：
 
