@@ -1,4 +1,4 @@
-![](./Documents/_media/banner@2x.png)
+![](./_media/banner@2x.png)
 
 [![CI Status](https://img.shields.io/travis/latehorse/OKBluetooth.svg?style=flat)](https://travis-ci.org/latehorse/OKBluetooth)
 [![Version](https://img.shields.io/cocoapods/v/OKBluetooth.svg?style=flat)](https://cocoapods.org/pods/OKBluetooth)

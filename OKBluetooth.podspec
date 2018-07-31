@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
                         The easiest way to use Bluetooth (BLE) on ios, using ReactiveCocoa.
                        DESC
 
-  s.homepage         = 'https://github.com/yuhanle/OKBluetooth'
+  s.homepage         = 'https://github.com/latehorse/OKBluetooth'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'yuhanle' => 'deadvia@gmail.com' }
-  s.source           = { :git => 'https://github.com/yuhanle/OKBluetooth.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/latehorse/OKBluetooth.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/yuhanle'
 
   s.ios.deployment_target = '8.0'
