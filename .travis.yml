@@ -11,6 +11,7 @@ cache: cocoapods
 podfile: Example/Podfile
 before_install:
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
+  - pod setup
   - pod install --project-directory=Example
 script:
   - set -o pipefail
