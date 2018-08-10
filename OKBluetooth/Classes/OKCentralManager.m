@@ -118,7 +118,7 @@
     }
     okPeripheral.advertisingData = advertisementData;
     
-    [self.scanServiceSubscriber sendNext:self.peripherals];
+    [self.scanServiceSubscriber sendNext:okPeripheral];
     if (self.scannedPeripherals.count >= self.peripheralsCountToStop) {
         [self.scanServiceSubscriber sendCompleted];
         [self stopScanForPeripherals];
