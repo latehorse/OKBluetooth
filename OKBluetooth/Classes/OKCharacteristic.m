@@ -128,8 +128,6 @@
         [self.notifyValueSubscriber sendNext:anError];
         [self.notifyValueSubscriber sendCompleted];
     }
-    
-    [self.notifySubscriber sendNext:anError];
 }
 
 - (void)handleReadValue:(NSData *)aValue error:(NSError *)anError
@@ -139,6 +137,7 @@
     if (anError) {
         [self.readValueSubscriber sendError:anError];
     }else {
+        [self.notifySubscriber sendNext:aValue];
         [self.readValueSubscriber sendNext:aValue];
         [self.readValueSubscriber sendCompleted];
     }
