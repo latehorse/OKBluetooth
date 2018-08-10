@@ -32,14 +32,9 @@
     OKScanModel *input = [[OKScanModel alloc] initModelWithServiceUUIDs:nil options:nil aScanInterval:30];
     
     @weakify(self);
-    self.dsp = [[[OKCentralManager sharedInstance].scanForPeripheralsCommand execute:input] subscribeNext:^(NSArray <OKPeripheral *> *peripherals) {
+    self.dsp = [[[OKCentralManager sharedInstance].scanForPeripheralsCommand execute:input] subscribeNext:^(OKPeripheral *peripheral) {
         @strongify(self);
-        [self.okItems removeAllObjects];
-        for (OKPeripheral *p in peripherals) {
-            if (p.name.length) {
-                [self.okItems addObject:p];
-            }
-        }
+        [self.okItems addObject:peripheral];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
