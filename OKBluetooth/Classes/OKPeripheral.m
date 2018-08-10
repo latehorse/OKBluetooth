@@ -294,6 +294,15 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
     }
 }
 
+-(void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
+    if (error) {
+        [self.rssiValueSubscriber sendError:error];
+    }else {
+        [self.rssiValueSubscriber sendNext:peripheral.RSSI];
+        [self.rssiValueSubscriber sendCompleted];
+    }
+}
+
 /*----------------------------------------------------*/
 #pragma mark - Lifecycle -
 /*----------------------------------------------------*/
