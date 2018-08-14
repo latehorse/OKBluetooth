@@ -84,7 +84,7 @@
 /**
  * NotifyValue update
  */
-@property (nonatomic, strong, readonly) RACSignal *notifyValueSignal;
+@property (nonatomic, strong) RACSignal *notifyValueSignal;
 
 // ----- Used for input events -----/
 

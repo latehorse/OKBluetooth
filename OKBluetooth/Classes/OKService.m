@@ -24,7 +24,7 @@
 /**
  * Discoveres Subscriber characteristics of this service
  */
-@property (strong, nonatomic, readonly) id<RACSubscriber> _Nonnull discoverCharacteristicsSubscriber;
+@property (strong, nonatomic) id<RACSubscriber> discoverCharacteristicsSubscriber;
 
 @end
 
@@ -74,10 +74,10 @@
                 [subscriber sendError:[OKUtils discoverErrorWithCode:kOKUtilsMissingServiceErrorCode message:kOKUtilsMissingServiceErrorMessage]];
                 return nil;
             }
-            _discoverCharacteristicsSubscriber = subscriber;
+            self.discoverCharacteristicsSubscriber = subscriber;
             [self.cbService.peripheral discoverCharacteristics:input forService:self.cbService];
             return [RACDisposable disposableWithBlock:^{
-                _discoverCharacteristicsSubscriber = nil;
+                self.discoverCharacteristicsSubscriber = nil;
             }];
         }];
     }];

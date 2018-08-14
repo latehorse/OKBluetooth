@@ -120,7 +120,7 @@
  * @return A list of the LGPeripherals that are currently connected to
  * the system and that contain any of the services specified in the serviceUUID parameter.
  */
-- (NSArray *)retrieveConnectedPeripheralsWithServices:(NSArray *)serviceUUIDS;
+- (NSArray *)retrieveConnectedPeripheralsWithServices:(NSArray *)serviceUUIDs;
 
 /**
  @return Singleton instance of Central manager

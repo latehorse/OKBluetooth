@@ -33,22 +33,22 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
 /**
  * Peripheral's connect subscriber
  */
-@property (nonatomic, strong, readonly) id<RACSubscriber> _Nonnull connectServiceSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> connectServiceSubscriber;
 
 /**
  * Peripheral's disConnect subscriber
  */
-@property (nonatomic, strong, readonly) id<RACSubscriber> _Nonnull disConnectServiceSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> disConnectServiceSubscriber;
 
 /**
  * Peripheral's discoverServices subscriber
  */
-@property (nonatomic, strong, readonly) id<RACSubscriber> _Nonnull discoverServicesSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> discoverServicesSubscriber;
 
 /**
  * Peripheral's rssi subscriber
  */
-@property (nonatomic, strong, readonly) id<RACSubscriber> _Nonnull rssiValueSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> rssiValueSubscriber;
 
 @end
 
@@ -159,13 +159,13 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
         @strongify(self);
         RACSubject *timeoutSubject = [RACSubject subject];
         RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-            _connectServiceSubscriber = subscriber;
+            self.connectServiceSubscriber = subscriber;
             [self.manager.manager connectPeripheral:self.cbPeripheral options:@{CBConnectPeripheralOptionNotifyOnConnectionKey:@YES,
                                                                                 CBConnectPeripheralOptionNotifyOnDisconnectionKey:@YES,
                                                                                 CBConnectPeripheralOptionNotifyOnNotificationKey:@YES}];
             return [RACDisposable disposableWithBlock:^{
                 [timeoutSubject sendCompleted];
-                _connectServiceSubscriber = nil;
+                self.connectServiceSubscriber = nil;
             }];
         }];
         
@@ -182,10 +182,10 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
     _disConnectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
         @strongify(self);
         return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-            _disConnectServiceSubscriber = subscriber;
+            self.disConnectServiceSubscriber = subscriber;
             [self.manager.manager cancelPeripheralConnection:self.cbPeripheral];
             return [RACDisposable disposableWithBlock:^{
-                _disConnectServiceSubscriber = nil;
+                self.disConnectServiceSubscriber = nil;
             }];
         }];
     }];
@@ -198,10 +198,10 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
                 return nil;
             }
             
-            _discoverServicesSubscriber = subscriber;
+            self.discoverServicesSubscriber = subscriber;
             [self.cbPeripheral discoverServices:input];
             return [RACDisposable disposableWithBlock:^{
-                _discoverServicesSubscriber = nil;
+                self.discoverServicesSubscriber = nil;
             }];
         }];
     }];
@@ -209,10 +209,10 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
     _readRSSIValueCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
         @strongify(self);
         return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-            _rssiValueSubscriber = subscriber;
+            self.rssiValueSubscriber = subscriber;
             [self.cbPeripheral readRSSI];
             return [RACDisposable disposableWithBlock:^{
-                _rssiValueSubscriber = nil;
+                self.rssiValueSubscriber = nil;
             }];
         }];
     }];
@@ -294,7 +294,7 @@ NSString * const kConnectionMissingErrorMessage = @"BLE Device is not connected"
     }
 }
 
--(void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error{
+- (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(NSError *)error {
     if (error) {
         [self.rssiValueSubscriber sendError:error];
     }else {

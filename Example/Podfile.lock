@@ -1,6 +1,6 @@
 PODS:
   - Expecta (1.0.6)
-  - OKBluetooth (0.1.0):
+  - OKBluetooth (0.1.1):
     - ReactiveObjC (= 3.1.0)
   - ReactiveObjC (3.1.0)
   - Specta (1.0.7)
@@ -25,11 +25,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
-  OKBluetooth: a1aba032e6ac46d88fedbeda5db8a95a5d7257e3
+  OKBluetooth: e1c43c26503984f16498a0615f2ea8e430f170bc
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 741bbd7aa1d066f2f95ac4025738736568790610
+PODFILE CHECKSUM: 2ba5d483da5c625697f998a9cb22339e48507144
 
 COCOAPODS: 1.5.3

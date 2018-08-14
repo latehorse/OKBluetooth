@@ -52,22 +52,22 @@
 /**
  * Peripheral's notifyValue subscriber
  */
-@property (nonatomic, strong, readonly) id<RACSubscriber> _Nonnull notifyValueSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> notifyValueSubscriber;
 
 /**
  * Peripheral's notifyValue subscriber
  */
-@property (nonatomic, strong, readonly) id<RACSubscriber> _Nonnull notifySubscriber;
+@property (nonatomic, strong) id<RACSubscriber> notifySubscriber;
 
 /**
  * Peripheral's writeValue subscriber
  */
-@property (nonatomic, strong, readonly) id<RACSubscriber> _Nonnull writeValueSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> writeValueSubscriber;
 
 /**
  * Peripheral's readValue subscriber
  */
-@property (nonatomic, strong, readonly) id<RACSubscriber> _Nonnull readValueSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> readValueSubscriber;
 
 /**
  * Writes input data to characteristic
@@ -78,7 +78,7 @@
 /**
  * Peripheral's writeData subscriber
  */
-@property (nonatomic, strong, readonly) id<RACSubscriber> _Nonnull writeDataSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> writeDataSubscriber;
 
 @end
 
@@ -173,10 +173,10 @@
                 [subscriber sendError:[OKUtils readErrorWithCode:kOKUtilsMissingCharacteristicErrorCode message:kOKUtilsMissingCharacteristicErrorMessage]];
                 return nil;
             }
-            _notifyValueSubscriber = subscriber;
+            self.notifyValueSubscriber = subscriber;
             [self.cbCharacteristic.service.peripheral setNotifyValue:input.boolValue forCharacteristic:self.cbCharacteristic];
             return [RACDisposable disposableWithBlock:^{
-                _notifyValueSubscriber = nil;
+                self.notifyValueSubscriber = nil;
             }];
         }];
     }];
@@ -208,18 +208,18 @@
         
         RACSubject *timeoutSubject = [RACSubject subject];
         RACSignal *signal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-            _writeDataSubscriber = subscriber;
+            self.writeDataSubscriber = subscriber;
             [self.cbCharacteristic.service.peripheral writeValue:input.subData forCharacteristic:self.cbCharacteristic type:input.type];
             return [RACDisposable disposableWithBlock:^{
                 [timeoutSubject sendCompleted];
-                _writeDataSubscriber = nil;
+                self.writeDataSubscriber = nil;
             }];
         }];
         
         // Subscribe command errors, then we can know the timeout
         [[timeoutSubject timeout:input.aInterval onScheduler:[RACScheduler mainThreadScheduler]] subscribeError:^(NSError * _Nullable error) {
             if (error.code == 1) {
-                [self.writeDataSubscriber sendError:[OKUtils scanErrorWithCode:kOKUtilsWriteErrorDomain message:kOKUtilsWriteErrorDomain]];
+                [self.writeDataSubscriber sendError:[OKUtils scanErrorWithCode:kOKUtilsMissingCharacteristicErrorCode message:kOKUtilsMissingCharacteristicErrorMessage]];
             }
         }];
         
@@ -229,12 +229,12 @@
     _writeValueCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(OKWriteValueModel *input) {
         @strongify(self);
         return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-            _writeValueSubscriber = subscriber;
-            _writeData = input;
+            self.writeValueSubscriber = subscriber;
+            self.writeData = input;
             
             [self loopWirteValue];
             return [RACDisposable disposableWithBlock:^{
-                _writeValueSubscriber = nil;
+                self.writeValueSubscriber = nil;
             }];
         }];
     }];
@@ -246,18 +246,19 @@
                 [subscriber sendError:[OKUtils readErrorWithCode:kOKUtilsMissingCharacteristicErrorCode message:kOKUtilsMissingCharacteristicErrorMessage]];
                 return nil;
             }
-            _readValueSubscriber = subscriber;
+            self.readValueSubscriber = subscriber;
             [self.cbCharacteristic.service.peripheral readValueForCharacteristic:self.cbCharacteristic];
             return [RACDisposable disposableWithBlock:^{
-                _readValueSubscriber = nil;
+                self.readValueSubscriber = nil;
             }];
         }];
     }];
     
     _notifyValueSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-        _notifySubscriber = subscriber;
+        @strongify(self);
+        self.notifySubscriber = subscriber;
         return [RACDisposable disposableWithBlock:^{
-            _notifyValueSignal = nil;
+            self.notifyValueSignal = nil;
         }];
     }];
 }

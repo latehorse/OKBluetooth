@@ -56,17 +56,17 @@
 /**
  * CBCentralManager's state updated by centralManagerDidUpdateState:
  */
-@property(nonatomic) CBCentralManagerState cbCentralManagerState;
+@property(nonatomic, assign) CBCentralManagerState cbCentralManagerState;
 
 /**
  * CBCentralManager scanService's subscriber
  */
-@property (nonatomic, strong) id<RACSubscriber> _Nonnull scanServiceSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> scanServiceSubscriber;
 
 /**
  * CBCentralManager connectService's subscriber
  */
-@property (nonatomic, strong) id<RACSubscriber> _Nonnull connectServiceSubscriber;
+@property (nonatomic, strong) id<RACSubscriber> connectServiceSubscriber;
 
 @end
 
@@ -99,7 +99,7 @@
 #pragma mark - CBCentralManagerDelegate
 - (void)centralManagerDidUpdateState:(nonnull CBCentralManager *)central
 {
-    self.cbCentralManagerState = central.state;
+    self.cbCentralManagerState = (CBCentralManagerState)central.state;
     NSString *message = [self stateMessage];
     if (message) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -174,9 +174,9 @@
     return [self wrappersByPeripherals:[self.manager retrievePeripheralsWithIdentifiers:identifiers]];
 }
 
-- (NSArray *)retrieveConnectedPeripheralsWithServices:(NSArray *)serviceUUIDS
+- (NSArray *)retrieveConnectedPeripheralsWithServices:(NSArray *)serviceUUIDs
 {
-    return [self wrappersByPeripherals:[self.manager retrieveConnectedPeripheralsWithServices:serviceUUIDS]];
+    return [self wrappersByPeripherals:[self.manager retrieveConnectedPeripheralsWithServices:serviceUUIDs]];
 }
 
 /*----------------------------------------------------*/
@@ -320,7 +320,7 @@ static OKCentralManager *sharedInstance = nil;
     if (self) {
         _centralQueue = dispatch_queue_create("com.OKBluetooth.OKCentralQueue", DISPATCH_QUEUE_SERIAL);
         _manager      = [[CBCentralManager alloc] initWithDelegate:self queue:self.centralQueue options:@{ CBCentralManagerOptionRestoreIdentifierKey: @"com.OKBluetooth.restoreIdentifier" }];
-        _cbCentralManagerState = _manager.state;
+        _cbCentralManagerState = (CBCentralManagerState)_manager.state;
         _scannedPeripherals = [NSMutableArray new];
         _peripheralsCountToStop = NSUIntegerMax;
     }
