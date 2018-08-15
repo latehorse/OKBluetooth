@@ -29,12 +29,16 @@
 }
 
 - (IBAction)_action_refresh:(UIBarButtonItem *)sender {
-    OKScanModel *input = [[OKScanModel alloc] initModelWithServiceUUIDs:nil options:nil aScanInterval:30];
+    [self.okItems removeAllObjects];
+    [self.tableView reloadData];
+    
+    OKScanModel *input = [[OKScanModel alloc] initModelWithServiceUUIDs:nil options:nil aScanInterval:10];
     
     @weakify(self);
     self.dsp = [[[OKCentralManager sharedInstance].scanForPeripheralsCommand execute:input] subscribeNext:^(OKPeripheral *peripheral) {
         @strongify(self);
-        [self.okItems addObject:peripheral];
+        [self.okItems removeAllObjects];
+        [self.okItems addObjectsFromArray:[OKCentralManager sharedInstance].peripherals];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
@@ -62,7 +66,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [OKCentralManager sharedInstance].peripheralsCountToStop = 20;
+    [OKCentralManager sharedInstance].peripheralsCountToStop = 30;
     [[OKCentralManager sharedInstance].scanForPeripheralsCommand.executing subscribeNext:^(NSNumber * _Nullable x) {
         if (x.boolValue) {
             [SVProgressHUD showWithStatus:@"搜索中"];

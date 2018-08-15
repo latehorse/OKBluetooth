@@ -91,7 +91,7 @@
     // Sorting OKPeripherals by RSSI values
     NSArray *sortedArray;
     sortedArray = [_scannedPeripherals sortedArrayUsingComparator:^NSComparisonResult(OKPeripheral *a, OKPeripheral *b) {
-        return a.RSSI < b.RSSI;
+        return labs(a.RSSI) > labs(b.RSSI);
     }];
     return sortedArray;
 }
@@ -290,7 +290,7 @@
             }
         }];
         
-        return [scanSignal throttle:1.5];
+        return [scanSignal throttle:0.15];
     }];
     
     RAC(self, scanning) = [self.scanForPeripheralsCommand executing];
