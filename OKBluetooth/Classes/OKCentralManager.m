@@ -138,7 +138,7 @@
     OKPeripheral *okPeripheral = [self wrapperByPeripheral:peripheral];
     [okPeripheral handleConnectionWithError:error];
     
-    [self.connectServiceSubscriber sendNext:peripheral];
+    [self.connectServiceSubscriber sendNext:okPeripheral];
 }
 
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
@@ -146,7 +146,7 @@
     OKPeripheral *okPeripheral = [self wrapperByPeripheral:peripheral];
     [okPeripheral handleDisconnectWithError:error];
     
-    [self.connectServiceSubscriber sendNext:peripheral];
+    [self.connectServiceSubscriber sendNext:okPeripheral];
     //[self.scannedPeripherals removeObject:okPeripheral];
 }
 
@@ -290,7 +290,7 @@
             }
         }];
         
-        return [scanSignal throttle:0.15];
+        return [scanSignal throttle:0.0];
     }];
     
     RAC(self, scanning) = [self.scanForPeripheralsCommand executing];
