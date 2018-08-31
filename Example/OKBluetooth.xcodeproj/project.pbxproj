@@ -268,7 +268,7 @@
 				ORGANIZATIONNAME = deadvia;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = 3YBE5P32EP;
+						DevelopmentTeam = LDCR2454UZ;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -517,7 +517,7 @@
 			baseConfigurationReference = B99FCCBC6489B0D7E582E02A /* Pods-OKBluetooth_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3YBE5P32EP;
+				DEVELOPMENT_TEAM = LDCR2454UZ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OKBluetooth/OKBluetooth-Prefix.pch";
 				INFOPLIST_FILE = "OKBluetooth/OKBluetooth-Info.plist";
@@ -535,7 +535,7 @@
 			baseConfigurationReference = 273A1D9CE48D6391BB4834CC /* Pods-OKBluetooth_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3YBE5P32EP;
+				DEVELOPMENT_TEAM = LDCR2454UZ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OKBluetooth/OKBluetooth-Prefix.pch";
 				INFOPLIST_FILE = "OKBluetooth/OKBluetooth-Info.plist";
