@@ -37,11 +37,13 @@
     @weakify(self);
     self.dsp = [[[OKCentralManager sharedInstance].scanForPeripheralsCommand execute:input] subscribeNext:^(OKPeripheral *peripheral) {
         @strongify(self);
-        [self.okItems removeAllObjects];
-        [self.okItems addObjectsFromArray:[OKCentralManager sharedInstance].peripherals];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
+        @synchronized (self.okItems) {
+            [self.okItems removeAllObjects];
+            [self.okItems addObjectsFromArray:[OKCentralManager sharedInstance].peripherals];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
     } error:^(NSError * _Nullable error) {
         NSLog(@"%@", error);
         dispatch_async(dispatch_get_main_queue(), ^{

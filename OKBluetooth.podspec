@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'OKBluetooth'
-  s.version          = '0.1.2'
+  s.version          = '1.0.0'
   s.summary          = 'Bluetooth library using ReactiveCocoa on ios.'
 
   s.description      = <<-DESC
